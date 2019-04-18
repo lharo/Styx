@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.Location;
 import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.utils.ComboItem;
@@ -106,6 +107,15 @@ public class StyxApp {
 		btnCheapestFlight.setBackground(new Color(255, 255, 255));
 		btnCheapestFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					FlightDate[] flightdates = api.getFlightDates(cusLocation.getFromFull(), cusLocation.getToFull());
+					for(FlightDate date : flightdates) {
+						System.out.println("Precio " + date.getPrice() + "|" + "Tipo " + date.getType() + "|Salida" + date.getDepartureDate() + "|Retorno" + date.getReturnDate());
+					}
+				} catch (ResponseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnCheapestFlight.setBounds(61, 194, 136, 23);
