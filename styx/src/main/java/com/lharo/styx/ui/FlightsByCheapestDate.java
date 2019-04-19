@@ -21,7 +21,7 @@ import com.lharo.styx.utils.CustomLocation;
 
 import javax.swing.border.BevelBorder;
 
-public class StyxApp {
+public class FlightsByCheapestDate {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -35,7 +35,7 @@ public class StyxApp {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StyxApp window = new StyxApp();
+					FlightsByCheapestDate window = new FlightsByCheapestDate();
 					api = new AmadeusAPI();
 					cusLocation = new CustomLocation();
 					window.frame.setVisible(true);
@@ -49,7 +49,7 @@ public class StyxApp {
 	/**
 	 * Create the application.
 	 */
-	public StyxApp() {
+	public FlightsByCheapestDate() {
 		initialize();
 	}
 
@@ -57,7 +57,7 @@ public class StyxApp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Flights By Cheapest Date");
 		frame.getContentPane().setBackground(new Color(255, 255, 204));
 		frame.setBounds(100, 100, 285, 434);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,15 +121,6 @@ public class StyxApp {
 		btnCheapestFlight.setBounds(61, 194, 136, 23);
 		frame.getContentPane().add(btnCheapestFlight);
 		
-		JButton button_1 = new JButton("Get Best Date");
-		button_1.setBackground(new Color(255, 255, 255));
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_1.setBounds(61, 228, 136, 23);
-		frame.getContentPane().add(button_1);
-		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		textField_1.setBounds(10, 148, 249, 39);
@@ -138,7 +129,7 @@ public class StyxApp {
 		
 		JList list = new JList();
 		list.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		list.setBounds(10, 262, 249, 109);
+		list.setBounds(10, 228, 249, 156);
 		frame.getContentPane().add(list);
 		
 		JButton button_2 = new JButton("Search");
