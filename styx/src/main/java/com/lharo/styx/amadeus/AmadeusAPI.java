@@ -5,7 +5,10 @@ import com.amadeus.Params;
 import com.amadeus.Shopping;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Locations;
+import com.amadeus.resources.AirTraffic;
 import com.amadeus.resources.FlightDate;
+import com.amadeus.resources.FlightDestination;
+import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
 import com.google.gson.Gson;
 import com.lharo.styx.utils.Json;
@@ -44,12 +47,35 @@ public class AmadeusAPI extends Json {
 	    return flights;		
 		
 	}
-	/*public static void main(String[] args) throws ResponseException {
-  		Gson gson = new Gson();
-		Location[] locations = getCities();
-	    for(Location loc : locations) {
-		    System.out.println(gson.toJson(loc.getAddress().getCityName()));
-	    }
-	}*/
+	public static HotelOffer[] getHotelOffersCity(String cityCode) throws ResponseException {
+		Amadeus amadeus = Amadeus
+	            .builder("REeZALAU0zdDojx31JBHiqsohCfWvsIT", "X1F75E0mYbasdM4f")
+	            .build();
+		HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params.with("cityCode", cityCode));
+		return offers;
+	}
+
+	public static HotelOffer getHotelDetailsById(String hotelId) throws ResponseException{
+		Amadeus amadeus = Amadeus
+	            .builder("REeZALAU0zdDojx31JBHiqsohCfWvsIT", "X1F75E0mYbasdM4f")
+	            .build();		
+		HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", hotelId));
+		return hotelOffer;
+	}
 	
+	public static AirTraffic[] getMostTraveledFromByCityAndDate(String cityCode, String dateMonthYear) throws ResponseException{
+		Amadeus amadeus = Amadeus
+	            .builder("REeZALAU0zdDojx31JBHiqsohCfWvsIT", "X1F75E0mYbasdM4f")
+	            .build();		
+		AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Params.with("originCityCode", cityCode).and("period", dateMonthYear));
+		return airTraffics;
+	}
+	
+	public static FlightDestination[] getCheapestDestinationsFromCity(String cityCode) throws ResponseException {
+		Amadeus amadeus = Amadeus
+	            .builder("REeZALAU0zdDojx31JBHiqsohCfWvsIT", "X1F75E0mYbasdM4f")
+	            .build();		
+		FlightDestination[] flightDestinations = amadeus.shopping.flightDestinations.get(Params.with("origin", cityCode));
+		return flightDestinations;
+	}
 }
