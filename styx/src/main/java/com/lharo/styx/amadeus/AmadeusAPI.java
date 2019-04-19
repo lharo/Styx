@@ -2,7 +2,6 @@ package com.lharo.styx.amadeus;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
-import com.amadeus.Shopping;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.resources.AirTraffic;
@@ -10,7 +9,6 @@ import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.FlightDestination;
 import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
-import com.google.gson.Gson;
 import com.lharo.styx.utils.Json;
 
 public class AmadeusAPI extends Json {
