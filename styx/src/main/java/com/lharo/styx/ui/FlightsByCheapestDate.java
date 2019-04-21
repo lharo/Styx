@@ -4,16 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightDate;
+import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
 import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.utils.ComboItem;
@@ -59,17 +63,17 @@ public class FlightsByCheapestDate {
 	private void initialize() {
 		frame = new JFrame("Flights By Cheapest Date");
 		frame.getContentPane().setBackground(new Color(255, 255, 204));
-		frame.setBounds(100, 100, 285, 434);
+		frame.setBounds(100, 100, 397, 503);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 23, 248, 23);
+		textField.setBounds(10, 23, 361, 23);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(61, 88, 136, 20);
+		comboBox.setBounds(111, 88, 136, 20);
 		frame.getContentPane().add(comboBox);
 
 		
@@ -85,7 +89,7 @@ public class FlightsByCheapestDate {
 				updateTextFieldWithFlight();		
 			}
 		});
-		btnSearchFrom.setBounds(10, 114, 108, 23);
+		btnSearchFrom.setBounds(52, 114, 108, 23);
 		frame.getContentPane().add(btnSearchFrom);
 		
 		JButton button = new JButton("Set To");
@@ -100,8 +104,18 @@ public class FlightsByCheapestDate {
 				updateTextFieldWithFlight();		
 			}
 		});
-		button.setBounds(150, 114, 108, 23);
+		button.setBounds(200, 114, 108, 23);
 		frame.getContentPane().add(button);
+	
+		DefaultListModel listModel;
+		listModel = new DefaultListModel();
+		JScrollPane scrollPane = new JScrollPane();
+
+		JList list = new JList(listModel);
+		scrollPane.setViewportView(list);
+		scrollPane.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		scrollPane.setBounds(10, 228, 361, 196);
+		frame.getContentPane().add(scrollPane);
 				
 		JButton btnCheapestFlight = new JButton("Get Flights");
 		btnCheapestFlight.setBackground(new Color(255, 255, 255));
@@ -111,6 +125,8 @@ public class FlightsByCheapestDate {
 					FlightDate[] flightdates = api.getFlightDates(cusLocation.getFromFull(), cusLocation.getToFull());
 					for(FlightDate date : flightdates) {
 						System.out.println("Precio " + date.getPrice() + "|" + "Tipo " + date.getType() + "|Salida" + date.getDepartureDate() + "|Retorno" + date.getReturnDate());
+						listModel.addElement("Precio " + date.getPrice().getTotal() + 
+								" |Salida: " + date.getDepartureDate().getDay() + "/" + date.getDepartureDate().getMonth() + "|Retorno:" + date.getReturnDate().getDay() + "/" + date.getReturnDate().getMonth());
 					}
 				} catch (ResponseException e1) {
 					// TODO Auto-generated catch block
@@ -118,19 +134,15 @@ public class FlightsByCheapestDate {
 				}
 			}
 		});
-		btnCheapestFlight.setBounds(61, 194, 136, 23);
+		btnCheapestFlight.setBounds(61, 194, 200, 23);
 		frame.getContentPane().add(btnCheapestFlight);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		textField_1.setBounds(10, 148, 249, 39);
+		textField_1.setBounds(52, 144, 256, 39);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JList list = new JList();
-		list.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		list.setBounds(10, 228, 249, 156);
-		frame.getContentPane().add(list);
 		
 		JButton button_2 = new JButton("Search");
 		button_2.addActionListener(new ActionListener() {
@@ -149,8 +161,30 @@ public class FlightsByCheapestDate {
 			}
 		});
 		button_2.setBackground(new Color(255, 255, 255));
-		button_2.setBounds(93, 57, 78, 23);
+		button_2.setBounds(146, 54, 78, 23);
 		frame.getContentPane().add(button_2);
+		
+		JButton btnFidHotels = new JButton("Find Hotels");
+		btnFidHotels.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HotelOffersCity frameHotel;
+				try {
+/*					HotelOffer[] hotel = api.getHotelOffersCity(cusLocation.getToFull());
+					for(HotelOffer h:hotel) {
+						System.out.println(h.getHotel().getName());
+					}*/
+
+					frameHotel = new HotelOffersCity(cusLocation.getToValue(), cusLocation.getToFull());
+					frameHotel.main(cusLocation.getToValue(), cusLocation.getToFull());
+				} catch (ResponseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnFidHotels.setBounds(245, 435, 126, 23);
+		frame.getContentPane().add(btnFidHotels);
+		
 	}
 
 	protected void updateTextFieldWithFlight() {

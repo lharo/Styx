@@ -49,7 +49,10 @@ public class AmadeusAPI extends Json {
 		Amadeus amadeus = Amadeus
 	            .builder("REeZALAU0zdDojx31JBHiqsohCfWvsIT", "X1F75E0mYbasdM4f")
 	            .build();
+		//System.out.println("Should be par " + cityCode);
 		HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params.with("cityCode", cityCode));
+
+		//HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params.with("cityCode", cityCode));
 		return offers;
 	}
 
