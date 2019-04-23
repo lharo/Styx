@@ -199,7 +199,7 @@ public class FlightsByCheapestDate {
 	}
 
 	protected void updateTextFieldWithFlight() {
-		String flightFrom = "";//"Starting Location: " + cusLocation.getFromFull() + " Destination ";
+		String flightFrom = "";
 		String flightTo = "";
 		String flightInfo = "";
 		
