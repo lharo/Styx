@@ -117,7 +117,11 @@ public class HotelOffersCity {
 				hotelOffers[0].getHotel().getLatitude();
 				hotelOffers[0].getHotel().getLongitude();
 				//hotelOffers[0].getHotel().
+
 				Path currentRelativePath = Paths.get("");
+				String s = currentRelativePath.toAbsolutePath().toString();
+				CreateKMLgeoPath flight = new CreateKMLgeoPath();
+				flight.writeHotelMap(s, "ejemploHotel", hotelOffers[0].getHotel().getLatitude(), hotelOffers[0].getHotel().getLongitude(), msg);
 				//				CreateKMLgeoPath flight = new CreateKMLgeoPath();
 				//				//flight.writeFile(currentRelativePath, "ejemplo1", );
 						
