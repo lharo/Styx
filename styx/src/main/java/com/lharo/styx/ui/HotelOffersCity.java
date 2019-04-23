@@ -118,8 +118,9 @@ public class HotelOffersCity {
 				hotelOffers[0].getHotel().getLongitude();
 				//hotelOffers[0].getHotel().
 				Path currentRelativePath = Paths.get("");
-				CreateKMLgeoPath flight = new CreateKMLgeoPath();
-				//sflight.writeFile(currentRelativePath, "ejemplo1", );				
+				//				CreateKMLgeoPath flight = new CreateKMLgeoPath();
+				//				//flight.writeFile(currentRelativePath, "ejemplo1", );
+						
 			}
 		});
 		btnSiguiente.setBounds(325, 263, 99, 23);

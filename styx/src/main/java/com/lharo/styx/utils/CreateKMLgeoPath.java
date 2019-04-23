@@ -4,7 +4,7 @@ import java.io.*;
 
 public class CreateKMLgeoPath {
 
-    public void writeFile(String datapath, String name,int OrigenLAT, int OrigenLON, int DestinoLAT,int DestinoLON){
+    public void writeFile(String datapath, String name,double OrigenLAT, double OrigenLON, double DestinoLAT,double DestinoLON){
 
         File testexists = new File(datapath+"/"+name+".kml");
         Writer fwriter;
@@ -47,32 +47,6 @@ public class CreateKMLgeoPath {
                 "          <altitudeMode>relativeToGround</altitudeMode>\n" +
                 "        </LookAt>\n" +
                 "      </gx:FlyTo>\n" +
-
-                "<gx:AnimatedUpdate>\n" +
-                "          <Update>\n" +
-                "            <targetHref/>\n" +
-                "            <Change>\n" +
-                "              <Placemark targetId=\"hotelInfo\">\n" +
-                "                <gx:balloonVisibility>1</gx:balloonVisibility>\n" +
-                "              </Placemark>\n" +
-                "            </Change>\n" +
-                "          </Update>\n" +
-                "        </gx:AnimatedUpdate>"+
-                "      \n" +
-                "    </gx:Playlist>\n" +
-                "  </gx:Tour>\n" +
-
-                "<Placemark id=\"hotelInfo\">\n" +
-                "      <name>Underwater off the California Coast</name>\n" +
-                "      <description>\n" +
-                "        The tour begins near the Santa Cruz Canyon, \n" +
-                "        off the coast of California, USA.\n" +
-                "      </description>\n" +
-                "      <Point>\n" +
-                "        <gx:altitudeMode>relativeToGround</gx:altitudeMode>\n" +
-                "        <coordinates>"+DestinoLAT+","+DestinoLON+"</coordinates>\n" +
-                "      </Point>\n" +
-                "    </Placemark>"+
                 "</kml>";
 
 
