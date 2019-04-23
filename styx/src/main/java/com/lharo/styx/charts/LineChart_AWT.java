@@ -8,11 +8,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import com.amadeus.resources.FlightDate;
+
 public class LineChart_AWT extends ApplicationFrame {
 
 	private static final long serialVersionUID = -8102339579418472182L;
 
-	public LineChart_AWT( String applicationTitle , String chartTitle ) {
+	public LineChart_AWT( String applicationTitle , String chartTitle, FlightDate[] flightdates ) {
 		super(applicationTitle);
 		JFreeChart lineChart = ChartFactory.createLineChart(
 				chartTitle,
@@ -37,11 +39,8 @@ public class LineChart_AWT extends ApplicationFrame {
 		return dataset;
 	}
 
-	public void showGraph() {
-		LineChart_AWT chart = new LineChart_AWT(
-				"School Vs Years" ,
-				"Numer of Schools vs years");
-
+	public void showGraph(String applicationTitle , String chartTitle, FlightDate[] flightdates) {
+		LineChart_AWT chart = new LineChart_AWT(chartTitle, chartTitle, flightdates);
 		chart.pack( );
 		RefineryUtilities.centerFrameOnScreen( chart );
 		chart.setVisible( true );

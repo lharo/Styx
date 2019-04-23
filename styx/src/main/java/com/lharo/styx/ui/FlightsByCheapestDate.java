@@ -19,6 +19,7 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
+import com.amadeus.resources.Location.GeoCode;
 import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.charts.LineChart_AWT;
 import com.lharo.styx.utils.ComboItem;
@@ -34,6 +35,7 @@ public class FlightsByCheapestDate {
 	private static AmadeusAPI api; 
 	private static CustomLocation cusLocation;
 	private FlightDate[] flightdates;
+	private GeoCode geoCodeSelected;
 	/**
 	 * Launch the application.
 	 */
@@ -88,6 +90,7 @@ public class FlightsByCheapestDate {
 				String key = ((ComboItem)item).getKey();				
 				cusLocation.setFromFull(value);
 				cusLocation.setFromValue(key);
+				cusLocation.setFromGeo(geoCodeSelected);
 				updateTextFieldWithFlight();		
 			}
 		});
@@ -103,6 +106,7 @@ public class FlightsByCheapestDate {
 				String key = ((ComboItem)item).getKey();				
 				cusLocation.setToFull(value);
 				cusLocation.setToValue(key);
+				cusLocation.setToGeo(geoCodeSelected);
 				updateTextFieldWithFlight();		
 			}
 		});
@@ -153,6 +157,7 @@ public class FlightsByCheapestDate {
 					Location[] cities = api.getCities(textField.getText());
 					comboBox.removeAllItems();
 					for(Location city : cities) {
+						geoCodeSelected = city.getGeoCode();
 						comboBox.addItem(new ComboItem(city.getAddress().getCityName(), city.getAddress().getCityCode()));						
 						//Object item = comboBox.getSelectedItem();
 						//String value = ((ComboItem)item).getValue();
@@ -190,11 +195,22 @@ public class FlightsByCheapestDate {
 		JButton btnGraphs = new JButton("Graphs");
 		btnGraphs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LineChart_AWT lcAWT = new LineChart_AWT(null, null);
+				LineChart_AWT lcAWT = new LineChart_AWT("Styx", cusLocation.getFromFull() + " to " + cusLocation.getToFull(), flightdates);
+				lcAWT.showGraph("Styx", cusLocation.getFromFull() + " to " + cusLocation.getToFull(), flightdates);
 			}
 		});
 		btnGraphs.setBounds(10, 435, 102, 23);
 		frame.getContentPane().add(btnGraphs);
+		
+		JButton btnMap = new JButton("Map");
+		btnMap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cusLocation.getFromGeo();
+				cusLocation.getToGeo();
+			}
+		});
+		btnMap.setBounds(135, 435, 89, 23);
+		frame.getContentPane().add(btnMap);
 		
 	}
 
