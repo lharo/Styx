@@ -22,6 +22,7 @@ import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
 import com.amadeus.resources.Location.GeoCode;
+import com.google.gson.Gson;
 import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.charts.LineChart_AWT;
 import com.lharo.styx.utils.ComboItem;
@@ -206,8 +207,9 @@ public class FlightsByCheapestDate {
 		JButton btnMap = new JButton("Map");
 		btnMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cusLocation.getFromGeo();
-				cusLocation.getToGeo();
+				Gson gson = new Gson();
+				System.out.println("From " + gson.toJson(cusLocation.getFromGeo()));
+				System.out.println("To " + gson.toJson(cusLocation.getToGeo()));
 				Path currentRelativePath = Paths.get("");
 				String s = currentRelativePath.toAbsolutePath().toString();
 				CreateKMLgeoPath flight = new CreateKMLgeoPath();
