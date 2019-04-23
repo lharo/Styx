@@ -13,6 +13,7 @@ import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.images.TextOverlay;
 import com.lharo.styx.twitter.ConfigurationBuilderTwitter;
 import com.lharo.styx.utils.ComboItem;
+import com.lharo.styx.utils.CreateKMLgeoPath;
 
 import twitter4j.TwitterException;
 
@@ -31,6 +32,9 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class HotelOffersCity {
 
@@ -109,12 +113,9 @@ public class HotelOffersCity {
 		JButton btnSiguiente = new JButton("View on Earth");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*for(HotelOffer h : hotel) {
-					System.out.println(h.getHotel().getName());
-				}
-				for(HotelOffer h : hotelOffers) {
-					System.out.println(h.getHotel().getName());					
-				}*/
+				Path currentRelativePath = Paths.get("");
+				CreateKMLgeoPath flight = new CreateKMLgeoPath();
+				flight.writeFile(currentRelativePath, "ejemplo1", );
 				
 			}
 		});
