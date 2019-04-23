@@ -22,8 +22,8 @@ public class CreateKMLgeoPath {
                 "        <gx:duration>4.0</gx:duration>\n" +
                 "        <!-- bounce is the default flyToMode -->\n" +
                 "        <LookAt>\n" +
-                "          <longitude>"+OrigenLAT+"</longitude>\n" +
-                "          <latitude>"+OrigenLON+"</latitude>\n" +
+                "          <longitude>"+OrigenLON+"</longitude>\n" +
+                "          <latitude>"+OrigenLAT+"</latitude>\n" +
                 "          <altitude>0</altitude>\n" +
                 "          <heading>-27.92338743600616</heading>\n" +
                 "          <tilt>71.60007457352123</tilt>\n" +
@@ -38,8 +38,8 @@ public class CreateKMLgeoPath {
                 "      <gx:FlyTo>\n" +
                 "        <gx:duration>4.0</gx:duration>\n" +
                 "        <LookAt>\n" +
-                "          <longitude>"+DestinoLAT+"</longitude>\n" +
-                "          <latitude>"+DestinoLON+"</latitude>\n" +
+                "          <longitude>"+DestinoLON+"</longitude>\n" +
+                "          <latitude>"+DestinoLAT+"</latitude>\n" +
                 "          <altitude>0</altitude>\n" +
                 "          <heading>-71.95152128859215</heading>\n" +
                 "          <tilt>68.69127809807833</tilt>\n" +
@@ -84,8 +84,8 @@ public class CreateKMLgeoPath {
                 "        <gx:duration>4.0</gx:duration>\n" +
                 "        <!-- bounce is the default flyToMode -->\n" +
                 "        <LookAt>\n" +
-                "          <longitude>" + OrigenLAT + "</longitude>\n" +
-                "          <latitude>" + OrigenLON + "</latitude>\n" +
+                "          <longitude>" + OrigenLON + "</longitude>\n" +
+                "          <latitude>" +OrigenLAT + "</latitude>\n" +
                 "          <altitude>0</altitude>\n" +
                 "          <heading>-27.92338743600616</heading>\n" +
                 "          <tilt>71.60007457352123</tilt>\n" +
@@ -112,7 +112,7 @@ public class CreateKMLgeoPath {
                 "      </description>\n" +
                 "      <Point>\n" +
                 "        <gx:altitudeMode>relativeToGround</gx:altitudeMode>\n" +
-                "        <coordinates>"+OrigenLAT+","+OrigenLON+"</coordinates>\n" +
+                "        <coordinates>"+OrigenLON+","+OrigenLAT+"</coordinates>\n" +
                 "      </Point>\n" +
                 "    </Placemark>" +
                 "</gx:Playlist>"+
