@@ -113,10 +113,13 @@ public class HotelOffersCity {
 		JButton btnSiguiente = new JButton("View on Earth");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				hotelOffers[0].getHotel().getLatitude();
+				hotelOffers[0].getHotel().getLongitude();
+				//hotelOffers[0].getHotel().
 				Path currentRelativePath = Paths.get("");
 				CreateKMLgeoPath flight = new CreateKMLgeoPath();
-				//flight.writeFile(currentRelativePath, "ejemplo1", );
-				
+				//sflight.writeFile(currentRelativePath, "ejemplo1", );				
 			}
 		});
 		btnSiguiente.setBounds(325, 263, 99, 23);
