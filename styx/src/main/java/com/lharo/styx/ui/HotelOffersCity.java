@@ -115,7 +115,7 @@ public class HotelOffersCity {
 			public void actionPerformed(ActionEvent e) {
 				Path currentRelativePath = Paths.get("");
 				CreateKMLgeoPath flight = new CreateKMLgeoPath();
-				flight.writeFile(currentRelativePath, "ejemplo1", );
+				//flight.writeFile(currentRelativePath, "ejemplo1", );
 				
 			}
 		});
