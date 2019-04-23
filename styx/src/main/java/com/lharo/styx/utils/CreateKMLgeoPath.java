@@ -47,6 +47,8 @@ public class CreateKMLgeoPath {
                 "          <altitudeMode>relativeToGround</altitudeMode>\n" +
                 "        </LookAt>\n" +
                 "      </gx:FlyTo>\n" +
+                "</gx:Playlist>"+
+                "  </gx:Tour>\n" +
                 "</kml>";
 
 
@@ -113,6 +115,8 @@ public class CreateKMLgeoPath {
                 "        <coordinates>"+OrigenLAT+","+OrigenLON+"</coordinates>\n" +
                 "      </Point>\n" +
                 "    </Placemark>" +
+                "</gx:Playlist>"+
+                "  </gx:Tour>\n" +
                 "</kml>";
 
 
