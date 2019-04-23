@@ -13,6 +13,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import java.awt.Color;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.border.SoftBevelBorder;
 
 import com.amadeus.exceptions.ResponseException;
@@ -23,6 +25,7 @@ import com.amadeus.resources.Location.GeoCode;
 import com.lharo.styx.amadeus.AmadeusAPI;
 import com.lharo.styx.charts.LineChart_AWT;
 import com.lharo.styx.utils.ComboItem;
+import com.lharo.styx.utils.CreateKMLgeoPath;
 import com.lharo.styx.utils.CustomLocation;
 
 import javax.swing.border.BevelBorder;
@@ -207,6 +210,10 @@ public class FlightsByCheapestDate {
 			public void actionPerformed(ActionEvent e) {
 				cusLocation.getFromGeo();
 				cusLocation.getToGeo();
+				Path currentRelativePath = Paths.get("");
+				String s = currentRelativePath.toAbsolutePath().toString();
+				CreateKMLgeoPath flight = new CreateKMLgeoPath();
+				flight.writeFile(s, "ejemplo1", cusLocation.getFromGeo().getLatitude(), cusLocation.getFromGeo().getLongitude(),cusLocation.getToGeo().getLatitude(), cusLocation.getToGeo().getLongitude());
 			}
 		});
 		btnMap.setBounds(135, 435, 89, 23);
