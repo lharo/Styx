@@ -20,6 +20,7 @@ import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Location;
 import com.lharo.styx.amadeus.AmadeusAPI;
+import com.lharo.styx.charts.LineChart_AWT;
 import com.lharo.styx.utils.ComboItem;
 import com.lharo.styx.utils.CustomLocation;
 
@@ -32,6 +33,7 @@ public class FlightsByCheapestDate {
 	private JTextField textField_1;
 	private static AmadeusAPI api; 
 	private static CustomLocation cusLocation;
+	private FlightDate[] flightdates;
 	/**
 	 * Launch the application.
 	 */
@@ -122,7 +124,7 @@ public class FlightsByCheapestDate {
 		btnCheapestFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					FlightDate[] flightdates = api.getFlightDates(cusLocation.getFromFull(), cusLocation.getToFull());
+					flightdates = api.getFlightDates(cusLocation.getFromFull(), cusLocation.getToFull());
 					for(FlightDate date : flightdates) {
 						System.out.println("Precio " + date.getPrice() + "|" + "Tipo " + date.getType() + "|Salida" + date.getDepartureDate() + "|Retorno" + date.getReturnDate());
 						listModel.addElement("Precio " + date.getPrice().getTotal() + 
@@ -134,7 +136,7 @@ public class FlightsByCheapestDate {
 				}
 			}
 		});
-		btnCheapestFlight.setBounds(61, 194, 200, 23);
+		btnCheapestFlight.setBounds(83, 194, 200, 23);
 		frame.getContentPane().add(btnCheapestFlight);
 		
 		textField_1 = new JTextField();
@@ -177,13 +179,22 @@ public class FlightsByCheapestDate {
 					frameHotel = new HotelOffersCity(cusLocation.getToValue(), cusLocation.getToFull());
 					frameHotel.main(cusLocation.getToValue(), cusLocation.getToFull());
 				} catch (ResponseException e1) {
-					// TODO Auto-generated catch block
+					// TODO Auto-generated					
 					e1.printStackTrace();
 				}
 			}
 		});
 		btnFidHotels.setBounds(245, 435, 126, 23);
 		frame.getContentPane().add(btnFidHotels);
+		
+		JButton btnGraphs = new JButton("Graphs");
+		btnGraphs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LineChart_AWT lcAWT = new LineChart_AWT(null, null);
+			}
+		});
+		btnGraphs.setBounds(10, 435, 102, 23);
+		frame.getContentPane().add(btnGraphs);
 		
 	}
 
