@@ -110,7 +110,7 @@ public class CreateKMLgeoPath {
                 "      </description>\n" +
                 "      <Point>\n" +
                 "        <gx:altitudeMode>relativeToGround</gx:altitudeMode>\n" +
-                "        <coordinates>-119.749531,33.715059,0</coordinates>\n" +
+                "        <coordinates>"+OrigenLAT+","+OrigenLON+"</coordinates>\n" +
                 "      </Point>\n" +
                 "    </Placemark>" +
                 "</kml>";
