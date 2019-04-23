@@ -162,8 +162,6 @@ public class FlightsByCheapestDate {
 					for(Location city : cities) {
 						geoCodeSelected = city.getGeoCode();
 						comboBox.addItem(new ComboItem(city.getAddress().getCityName(), city.getAddress().getCityCode()));						
-						//Object item = comboBox.getSelectedItem();
-						//String value = ((ComboItem)item).getValue();
 					}
 				} catch (ResponseException e1) {
 					e1.printStackTrace();
